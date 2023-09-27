@@ -7,7 +7,7 @@ const EventsPage = ()=>{
     const [places, setPlaces] = useState([]);
 
   const fetchData = async () => {
-    const response = await fetch("http://localhost:3000/state");
+    const response = await fetch("https://backendsy-0282.onrender.com/state");
     const data = await response.json();
     setPlaces(data);
 

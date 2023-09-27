@@ -16,7 +16,7 @@ export default function PlacePage() {
   }
 
   const fetchData = async ()=>{
-    const response = await fetch(`http://localhost:3000/state/`+id);
+    const response = await fetch(`https://backendsy-0282.onrender.com/state/`+id);
     const data = await response.json();
 
     console.log("DETAil page " ,data);

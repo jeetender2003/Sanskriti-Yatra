@@ -32,7 +32,7 @@ axios.defaults.baseURL = "http://localhost:4000/api";
 function App() {
 
   const getData = async ()=>{
-    const response = await fetch("http://localhost:3000/loc")
+    const response = await fetch("https://backendsy-0282.onrender.com/loc")
    const data = await response.json();
    console.log(data);
 
