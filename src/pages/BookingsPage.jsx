@@ -1,4 +1,4 @@
-import AccountNav from "../AccountNav";
+import AccountNav from "../components/AccountNav";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import PlaceImg from "../PlaceImg";

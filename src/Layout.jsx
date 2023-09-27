@@ -1,4 +1,4 @@
-import AccountNav from "./AccountNav";
+
 import Header from "./Header";
 import {Outlet} from "react-router-dom";
 import Footer from "./components/Footer";

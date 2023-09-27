@@ -2,7 +2,7 @@ import PhotosUploader from "../PhotosUploader.jsx";
 import Perks from "../Perks.jsx";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import AccountNav from "../AccountNav";
+import AccountNav from "../components/AccountNav";
 import {Navigate, useParams} from "react-router-dom";
 
 export default function PlacesFormPage() {
