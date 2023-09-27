@@ -1,28 +1,39 @@
-import {Link} from "react-router-dom";
-import {useContext, useState} from "react";
-import {UserContext} from "./UserContext.jsx";
-import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
+import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { UserContext } from "./UserContext.jsx";
+import { Fragment } from "react";
+import { Disclosure, Menu, Transition } from "@headlessui/react";
 
- import logo from './assets/logo.jpeg'
+import logo from "./assets/logo.jpeg";
 
 export default function Header() {
-  const {user} = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
-  const [login,setLogin] = useState(true);
+  const [login, setLogin] = useState(true);
+
+  const [showMenu, setShowMenu] = useState(false);
+
+  const handleShowMenu = () => {
+    console.log("Show menu", showMenu);
+    if (showMenu) {
+      setShowMenu(!showMenu);
+      return "block";
+    } else {
+      setShowMenu(!showMenu);
+      return "hidden";
+    }
+  };
 
   function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
+    return classes.filter(Boolean).join(" ");
   }
 
-  const handleLogin = ()=>{
+  const handleLogin = () => {
     setLogin(false);
-  }
+  };
   return (
-  
     <>
-
-{/* <header className="flex justify-between">
+      {/* <header className="flex justify-between">
       <Link to={'/'} className="flex items-center gap-1">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 -rotate-90">
           <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
@@ -44,14 +55,14 @@ export default function Header() {
       
     </header> */}
 
-  {/* component */}
-  {/* This is an example component */}
+      {/* component */}
+      {/* This is an example component */}
 
-  <div className="max-w-4xl ">
-    <nav className="relative border-gray-200 px-2 mb-10">
-      <div className="container mx-auto flex flex-wrap items-center justify-between sticky">
-        <Link to="/" className="flex">
-          {/* <svg
+      <div className="max-w-4xl ">
+        <nav className="relative border-gray-200 px-2 mb-10">
+          <div className="container mx-auto flex flex-wrap items-center justify-between sticky">
+            <Link to="/" className="flex">
+              {/* <svg
             className="h-10 mr-3"
             width={51}
             height={70}
@@ -79,14 +90,14 @@ export default function Header() {
               </clipPath>
             </defs>
           </svg> */}
-          {/* <span className="self-center text-lg font-semibold whitespace-nowrap">
+              {/* <span className="self-center text-lg font-semibold whitespace-nowrap">
             Sanskriti Yatra
           </span> */}
-          <img className="w-24 h-24"  src = {logo} />
-        </Link>
-       
-       {/* Search  */}
-        {/* <div className="flex md:order-2">
+              <img className="w-24 h-24" src={logo} />
+            </Link>
+
+            {/* Search  */}
+            {/* <div className="flex md:order-2">
           <div className="relative mr-3 md:mr-0 hidden md:block">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <svg
@@ -143,135 +154,363 @@ export default function Header() {
             </svg>
           </button>
         </div> */}
-        <div
-          className="hidden md:flex  w-full md:w-auto md:order-1 justify-end"
-          id="mobile-menu-3"
-        >
-          <ul className="flex-col md:flex-row flex md:space-x-12 mt-4 md:mt-0 md:text-sm md:font-medium space-between ">
-            <li>
-              <Link
-                to="/"
-                className="bg-blue-700 md:bg-transparent text-white block pl-3 pr-4 py-2 md:text-blue-700 md:p-0 rounded text-lg"
-                aria-current="page"
-              >
-                Home
-              </Link>
-            </li>
+            <div
+              className="hidden md:flex  w-full md:w-auto md:order-1 justify-end"
+              id="mobile-menu-3"
+            >
+              <ul className="flex-col md:flex-row flex md:space-x-12 mt-4 md:mt-0 md:text-sm md:font-medium space-between ">
+                <li>
+                  <Link
+                    to="/"
+                    className="bg-blue-700 md:bg-transparent text-white block pl-3 pr-4 py-2 md:text-blue-700 md:p-0 rounded text-lg"
+                    aria-current="page"
+                  >
+                    Home
+                  </Link>
+                </li>
 
-            <li>
-              <Link
-                to="/events"
-                className="text-lg text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0"
-                aria-current="page"
-              >
-                Events
-              </Link>
-            </li>
-            <li>
-              <Link
-                to = "festivals"
-                className="text-lg text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0"
-              >
-                Festival Records
-              </Link>
-            </li>
-            <li>
-              <Link
-                to='/artifacts'
-                className="text-lg text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0"
-              >
-               Cultural Artifacts
-              </Link>
-            </li>
+                <li>
+                  <Link
+                    to="/events"
+                    className="text-lg text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0"
+                    aria-current="page"
+                  >
+                    Events
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="festivals"
+                    className="text-lg text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0"
+                  >
+                    Festival Records
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/artifacts"
+                    className="text-lg text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0"
+                  >
+                    Cultural Artifacts
+                  </Link>
+                </li>
 
-        {login && <li>
-        <Menu as="div" className="relative ml-3">
-              <div>
-                <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                  <span className="absolute -inset-1.5" />
-                  <span className="sr-only">Open user menu</span>
-                  <img
-                    className="h-8 w-8 rounded-full"
-                    src="https://img.freepik.com/premium-vector/indian-culture-concept_24640-73317.jpg?w=2000"
-                    alt=""
-                  />
-
-
-
-                </Menu.Button>
-              </div>
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-100"
-                enterFrom="transform opacity-0 scale-95"
-                enterTo="transform opacity-100 scale-100"
-                leave="transition ease-in duration-75"
-                leaveFrom="transform opacity-100 scale-100"
-                leaveTo="transform opacity-0 scale-95"
-              >
-                <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                  <Menu.Item>
-                    {({ active }) => (
-                      <Link
-                         to = "/account"
-                        className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                {login && (
+                  <li>
+                    <Menu as="div" className="relative ml-3">
+                      <div>
+                        <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                          <span className="absolute -inset-1.5" />
+                          <span className="sr-only">Open user menu</span>
+                          <img
+                            className="h-8 w-8 rounded-full"
+                            src="https://img.freepik.com/premium-vector/indian-culture-concept_24640-73317.jpg?w=2000"
+                            alt=""
+                          />
+                        </Menu.Button>
+                      </div>
+                      <Transition
+                        as={Fragment}
+                        enter="transition ease-out duration-100"
+                        enterFrom="transform opacity-0 scale-95"
+                        enterTo="transform opacity-100 scale-100"
+                        leave="transition ease-in duration-75"
+                        leaveFrom="transform opacity-100 scale-100"
+                        leaveTo="transform opacity-0 scale-95"
                       >
-                        Your Profile
-                      </Link>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item>
-                    {({ active }) => (
-                      <a
-                        href="#"
-                        className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                      >
-                        Settings
-                      </a>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item>
-                    {({ active }) => (
-                      < Link to={user?'/account':'/login'}
-                        onClick={()=>setLogin(false)}
-                        className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                      >
-                        Sign out
-                      </Link>
-                    )}
-                  </Menu.Item>
-                </Menu.Items>
-              </Transition>
-            </Menu>
-        </li>}
+                        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link
+                                to="/account"
+                                className={classNames(
+                                  active ? "bg-gray-100" : "",
+                                  "block px-4 py-2 text-sm text-gray-700"
+                                )}
+                              >
+                                Your Profile
+                              </Link>
+                            )}
+                          </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <a
+                                href="#"
+                                className={classNames(
+                                  active ? "bg-gray-100" : "",
+                                  "block px-4 py-2 text-sm text-gray-700"
+                                )}
+                              >
+                                Settings
+                              </a>
+                            )}
+                          </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link
+                                to={user ? "/account" : "/login"}
+                                onClick={() => setLogin(false)}
+                                className={classNames(
+                                  active ? "bg-gray-100" : "",
+                                  "block px-4 py-2 text-sm text-gray-700"
+                                )}
+                              >
+                                Sign out
+                              </Link>
+                            )}
+                          </Menu.Item>
+                        </Menu.Items>
+                      </Transition>
+                    </Menu>
+                  </li>
+                )}
 
-           {  !login && <li>
-              <Link to={user?'/account':'/login'} className="flex items-center gap-2 border border-gray-300 rounded-full py-2 px-4 ">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-          </svg>
-          <div className="bg-gray-500 text-white rounded-full border border-gray-500 overflow-hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 relative top-1">
-              <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clipRule="evenodd" />
-            </svg>
-          </div>
-          {!!user && (
-            <div>
-              {user.name}
+                {!login && (
+                  <li>
+                    <Link
+                      to={user ? "/account" : "/login"}
+                      className="flex items-center gap-2 border border-gray-300 rounded-full py-2 px-4 "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-6 h-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                        />
+                      </svg>
+                      <div className="bg-gray-500 text-white rounded-full border border-gray-500 overflow-hidden">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          className="w-6 h-6 relative top-1"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                      {!!user && <div>{user.name}</div>}
+                    </Link>
+                  </li>
+                )}
+              </ul>
             </div>
-          )}
-        </Link>
-              </li>}
-          </ul>
-        </div>
 
-     
+            {/* { Mobile View} */}
+            <div className="md:hidden">
+              <div
+                className="bg-none hover:cursor-pointer"
+                onClick={handleShowMenu}
+              >
+                {showMenu ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                    />
+                  </svg>
+                )}
+              </div>
 
+              <div
+                className={`${
+                  showMenu ? "static" : "hidden"
+                } md:hidden absolute right-5  z-50 order-2 bg-slate-100 w-auto `}
+                id="mobile-menu-3"
+              >
+                <ul className="flex-col gap-1 py-3 md:flex-row flex md:space-x-12 mt-4 md:mt-0 md:text-sm md:font-medium space-between ">
+                  <li>
+                    <Link
+                      to="/"
+                      className="bg-blue-700 md:bg-transparent text-white block pl-3 pr-4 py-2 md:text-blue-700 md:p-0 rounded text-lg"
+                      aria-current="page"
+                      onClick={() => setShowMenu(false)}
+                    >
+                      Home
+                    </Link>
+                  </li>
+
+                  <li>
+                    <Link
+                      to="/events"
+                      className="text-lg text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0"
+                      aria-current="page"
+                      onClick={() => setShowMenu(false)}
+                    >
+                      Events
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="festivals"
+                      className="text-lg text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0"
+                      onClick={() => setShowMenu(false)}
+                    >
+                      Festival Records
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/artifacts"
+                      className="text-lg text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 block pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0"
+                      onClick={() => setShowMenu(false)}
+                    >
+                      Cultural Artifacts
+                    </Link>
+                  </li>
+
+                  {login && (
+                    <li>
+                      <Menu as="div" className="relative ml-3">
+                        <div>
+                          <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                            <span className="absolute -inset-1.5" />
+                            <span className="sr-only">Open user menu</span>
+                            <img
+                              className="h-8 w-8 rounded-full"
+                              src="https://img.freepik.com/premium-vector/indian-culture-concept_24640-73317.jpg?w=2000"
+                              alt=""
+                            />
+                          </Menu.Button>
+                        </div>
+                        <Transition
+                          as={Fragment}
+                          enter="transition ease-out duration-100"
+                          enterFrom="transform opacity-0 scale-95"
+                          enterTo="transform opacity-100 scale-100"
+                          leave="transition ease-in duration-75"
+                          leaveFrom="transform opacity-100 scale-100"
+                          leaveTo="transform opacity-0 scale-95"
+                        >
+                          <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <Menu.Item>
+                              {({ active }) => (
+                                <Link
+                                  to="/account"
+                                  className={classNames(
+                                    active ? "bg-gray-100" : "",
+                                    "block px-4 py-2 text-sm text-gray-700"
+                                  )}
+                                  onClick={() => setShowMenu(false)}
+                                >
+                                  Your Profile
+                                </Link>
+                              )}
+                            </Menu.Item>
+                            <Menu.Item>
+                              {({ active }) => (
+                                <a
+                                  href="#"
+                                  className={classNames(
+                                    active ? "bg-gray-100" : "",
+                                    "block px-4 py-2 text-sm text-gray-700"
+                                  )}
+                                  onClick={() => setShowMenu(false)}
+                                >
+                                  Settings
+                                </a>
+                              )}
+                            </Menu.Item>
+                            <Menu.Item>
+                              {({ active }) => (
+                                <Link
+                                  to={user ? "/account" : "/login"}
+                                  onClick={() => {
+                                    setLogin(false);
+                                    setShowMenu(false);
+                                  }}
+                                  className={classNames(
+                                    active ? "bg-gray-100" : "",
+                                    "block px-4 py-2 text-sm text-gray-700"
+                                  )}
+                                >
+                                  Sign out
+                                </Link>
+                              )}
+                            </Menu.Item>
+                          </Menu.Items>
+                        </Transition>
+                      </Menu>
+                    </li>
+                  )}
+
+                  {!login && (
+                    <li>
+                      <Link
+                        to={user ? "/account" : "/login"}
+                        className="flex items-center gap-2 border border-gray-300 rounded-full py-2 px-4 "
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="w-6 h-6"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                          />
+                        </svg>
+                        <div className="bg-gray-500 text-white rounded-full border border-gray-500 overflow-hidden">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            className="w-6 h-6 relative top-1"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </div>
+                        {!!user && <div>{user.name}</div>}
+                      </Link>
+                    </li>
+                  )}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
       </div>
-    </nav>
-    
-  </div>
-</>
-
+    </>
   );
 }
