@@ -8,9 +8,12 @@ export default function IndexPage() {
   const [places, setPlaces] = useState([]);
 
   const fetchData = async () => {
-    const response = await fetch("http://localhost:3000/state");
+
+    
+    const response = await fetch("https://backendsy-0282.onrender.com/state");
     const data = await response.json();
     setPlaces(data);
+
 
     console.log("Places", places);
     const { tourist } = data[0];
@@ -21,6 +24,7 @@ export default function IndexPage() {
     // axios.get('/places').then(response => {
     //   setPlaces(response.data);
     // });
+
 
     fetchData();
   }, []);
