@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Image from "../Image.jsx";
 import PopularPlaces from "../components/PopularPlaces.jsx";
+import Notice from "../components/Notice.jsx";
+import EventsPage from "./EventsPage.jsx";
 
 export default function IndexPage() {
   const [places, setPlaces] = useState([]);
@@ -30,8 +32,9 @@ export default function IndexPage() {
   }, []);
   return (
     <>
+      <Notice />
       <h1 className="mt-30 text-2xl font-bold tracking-tight text-gray-900">
-        Trending Heritages
+        Popular Heritage Sites
       </h1>
       <div className="mt-8  mb-14 grid gap-x-6 gap-y-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
         {places.length > 0 &&
@@ -52,6 +55,11 @@ export default function IndexPage() {
             </Link>
           ))}
       </div>
+
+      <h1 className="mt-30 text-2xl font-bold tracking-tight text-gray-900">
+       Popular Cultural Events
+      </h1>
+      <EventsPage />
 
       {places && (
         <div className="my-50">
