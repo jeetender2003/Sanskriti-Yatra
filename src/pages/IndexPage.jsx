@@ -27,7 +27,7 @@ export default function IndexPage() {
   return (
     <>
       <h1 className="mt-30 text-2xl font-bold tracking-tight text-gray-900">
-        Popular Heritages
+        Trending Heritages
       </h1>
       <div className="mt-8  mb-14 grid gap-x-6 gap-y-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
         {places.length > 0 &&
